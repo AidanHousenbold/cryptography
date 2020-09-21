@@ -3,12 +3,34 @@
 # Arguments: string, integer
 # Returns: string
 def encrypt_caesar(plaintext, offset):
-    pass
+    encrypt = ""
+    for letter in plaintext:
+        current = ord(letter)
+        if current > 64 and current < 91:
+            char = ord(letter) + offset
+            if (char) > 90:
+                char = char - 26 
+            current = char
+
+        encrypt = encrypt + chr(current)
+ 
+    return encrypt
 
 # Arguments: string, integer
 # Returns: string
 def decrypt_caesar(ciphertext, offset):
-    pass
+    decrypt = ""
+    for letter in ciphertext:
+        current = ord(letter)
+        if current > 64 and current < 91:
+            char = ord(letter) - offset
+            if (char) < 65:
+                char = char + 26 
+            current = char
+
+        decrypt = decrypt + chr(current)
+ 
+    return decrypt
 
 # Vigenere Cipher
 # Arguments: string, string
@@ -43,8 +65,11 @@ def decrypt_mhkc(ciphertext, private_key):
     pass
 
 def main():
-    # Testing code here
-    pass
+
+    encrypt_string = encrypt_caesar("PYTHON CLUB.", 3)
+    print(encrypt_string)
+    print(decrypt_caesar(encrypt_string, 3))
+    
 
 if __name__ == "__main__":
     main()
