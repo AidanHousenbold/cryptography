@@ -42,15 +42,16 @@ def decrypt_caesar(ciphertext, offset):
 # Arguments: string, string
 # Returns: string
 def encrypt_vigenere(plaintext, keyword):
-    key_encrypt = " "
+    key_encrypt = ""
     key_index = 0
 
     while len(key_encrypt) < len(plaintext):
-        if key_index > len(plaintext):
+        if key_index > len(plaintext)-1:
             key_index = 0
 
         print(keyword[key_index])
-      ##  key_encrypt = key_encrypt + 
+
+        key_encrypt = key_encrypt + keyword[key_index]
 
         key_index = key_index + 1
 
