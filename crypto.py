@@ -11,7 +11,7 @@ def encrypt_caesar(plaintext, offset):
         current = ord(letter)
         if current > ascii_min and current < ascii_max:
             char = ord(letter) + offset
-            if (char) > ascii_max + 1:
+            if (char) > ascii_max - 1:
                 char = char - alphabet_shift
             current = char
 
@@ -42,7 +42,23 @@ def decrypt_caesar(ciphertext, offset):
 # Arguments: string, string
 # Returns: string
 def encrypt_vigenere(plaintext, keyword):
-    pass
+    key_encrypt = " "
+    key_index = 0
+
+    while len(key_encrypt) < len(plaintext):
+        if key_index > len(plaintext):
+            key_index = 0
+
+        print(keyword[key_index])
+      ##  key_encrypt = key_encrypt + 
+
+        key_index = key_index + 1
+
+    return key_encrypt
+
+
+
+
 
 # Arguments: string, string
 # Returns: string
@@ -72,10 +88,10 @@ def decrypt_mhkc(ciphertext, private_key):
 
 def main():
 
-    encrypt_string = encrypt_caesar("PYTHON CLUB.", 3)
+    encrypt_string = encrypt_caesar("PZTHON CLUB.", 3)
     print(encrypt_string)
     print(decrypt_caesar(encrypt_string, 3))
-    
+    print(encrypt_vigenere("ATTACKATDAWN","LEMON"))
 
 if __name__ == "__main__":
     main()
