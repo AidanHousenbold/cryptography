@@ -43,7 +43,6 @@ def decrypt_caesar(ciphertext, offset):
 # Arguments: string, string
 # Returns: string
 def encrypt_vigenere(plaintext, keyword):
-    ascii_min = 64
     ascii_max = 91 
     alphabet_shift = 26
     vigenere_encrypt = ""
@@ -91,7 +90,27 @@ def vigenere_get_key_phrase(plain_length, keyword):
 # Arguments: string, string
 # Returns: string
 def decrypt_vigenere(ciphertext, keyword):
-    pass
+    decrypt = ""
+
+    actualkeyword = ""
+
+    i = 0
+    for char in ciphertext:
+        actualkeyword = actualkeyword + keyword[i]
+        if(i == len(keyword) - 1): 
+            i = -1
+        i = i + 1
+
+    i = 0
+
+    for char in ciphertext:
+        letter = ord(char) - ord(actualkeyword[i]) + 65
+        if(letter < 65):
+            letter = letter + 26
+        decrypt = decrypt + chr(letter)
+        i = i + 1
+
+    return decrypt
 
 # Merkle-Hellman Knapsack Cryptosystem
 # Arguments: integer
@@ -116,10 +135,12 @@ def decrypt_mhkc(ciphertext, private_key):
 
 def main():
 
-    encrypt_string = encrypt_caesar("PZTHON CLUB.", 3)
+    encrypt_string = encrypt_caesar("PYTHON CLUB.", 3)
     print(encrypt_string)
     print(decrypt_caesar(encrypt_string, 3))
-    print(encrypt_vigenere("ATTACKATDAWN","LEMON"))
+    vigenere_encrypt_string = encrypt_vigenere("ATTACKATDAWN","LEMON")
+    print(vigenere_encrypt_string)
+    print(decrypt_vigenere(vigenere_encrypt_string,"LEMON"))
 
 if __name__ == "__main__":
     main()
