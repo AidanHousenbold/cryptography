@@ -38,27 +38,54 @@ def decrypt_caesar(ciphertext, offset):
  
     return decrypt
 
+
 # Vigenere Cipher
 # Arguments: string, string
 # Returns: string
 def encrypt_vigenere(plaintext, keyword):
+    ascii_min = 64
+    ascii_max = 91 
+    alphabet_shift = 26
+    vigenere_encrypt = ""
+
+    encrypt_string = vigenere_get_key_phrase(len(plaintext), keyword)
+    current_plain_index = 0
+    for letter in encrypt_string:
+        shift = vigenere_getshift(plaintext[current_plain_index])
+        char = ord(letter) + shift
+
+        if (char) > ascii_max - 1:
+            char = char - alphabet_shift
+
+        vigenere_encrypt = vigenere_encrypt + chr(char)
+        current_plain_index = current_plain_index + 1
+
+    return vigenere_encrypt
+            
+
+# Arguments: string
+# Returns: integer
+def vigenere_getshift(shiftchar):
+    ascii_min = 65
+    shift = ord(shiftchar) - ascii_min
+    return shift
+
+
+# Arguments: integer, string
+# Returns: string
+def vigenere_get_key_phrase(plain_length, keyword):
     key_encrypt = ""
     key_index = 0
 
-    while len(key_encrypt) < len(plaintext):
-        if key_index > len(plaintext)-1:
+    while len(key_encrypt) < plain_length:
+        if key_index > len(keyword) - 1:
             key_index = 0
-
-        print(keyword[key_index])
 
         key_encrypt = key_encrypt + keyword[key_index]
 
         key_index = key_index + 1
 
     return key_encrypt
-
-
-
 
 
 # Arguments: string, string
