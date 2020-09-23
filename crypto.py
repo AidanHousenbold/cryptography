@@ -116,7 +116,20 @@ def decrypt_vigenere(ciphertext, keyword):
 # Arguments: integer
 # Returns: tuple (W, Q, R) - W a length-n tuple of integers, Q and R both integers
 def generate_private_key(n=8):
-    pass
+
+    W = [total]
+    total = total + w[0]
+    i = 1
+    while i < n:
+    	total = total + W[i]
+    	W = W + [random.range(total + 1, 2 * total)]
+
+    Q = random.randint((total + 1, 2 * total))
+    while 1 == 1:         
+    	R = random.randint(2, Q-1)         
+    	if math.gcd(R,Q) == 1:             
+    		break      
+    return (W, Q, R) 
 
 # Arguments: tuple (W, Q, R) - W a length-n tuple of integers, Q and R both integers
 # Returns: tuple B - a length-n tuple of integers
@@ -141,6 +154,7 @@ def main():
     vigenere_encrypt_string = encrypt_vigenere("ATTACKATDAWN","LEMON")
     print(vigenere_encrypt_string)
     print(decrypt_vigenere(vigenere_encrypt_string,"LEMON"))
+    print(generate_private_key(n=8))
 
 if __name__ == "__main__":
     main()
