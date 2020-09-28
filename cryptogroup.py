@@ -165,7 +165,7 @@ def decrypt_mhkc(ciphertext, private_key):
                 i = i - 1
             else:
                 Cval = Cval - W[i]
-                indicesInOriginal.append(i)
+                indicesInOriginal.append(len(W) - i)
                 i = i -1
             if Cval == 0:
                 break
@@ -182,7 +182,7 @@ def main():
     y = (create_public_key(x))
     print(y)
 
-    z = (encrypt_mhkc("Z", y))
+    z = (encrypt_mhkc("ADAM", y))
 
     print(decrypt_mhkc(z, x))
 
